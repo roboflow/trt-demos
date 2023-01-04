@@ -9,6 +9,14 @@ local_inference_server_address = "http://localhost:9001/"
 version_number = 8
 project_id = "small-test-set/"
 
+headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    }
+
+params = {
+    'api_key': 'API',
+}
+
 # grab all the .jpg files
 extention_images = ".jpg"
 get_images = sorted(glob.glob('*' + extention_images))
@@ -24,14 +32,6 @@ for images in get_images:
     im_b64 = base64.b64encode(im_bytes).decode("utf8")
     
     payload = json.dumps({"image": im_b64})
-
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }
-
-    params = {
-        'api_key': 'API',
-    }
 
     response = requests.post(local_inference_server_address+project_id+str(version_number), params=params, headers=headers, data=im_b64)
 
