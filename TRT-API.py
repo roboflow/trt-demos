@@ -6,20 +6,13 @@ import requests
 import base64
 
 local_inference_server_address = "http://localhost:9001/"
-version_number = 8
+version_number = 10
 project_id = "small-test-set/"
-
-headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }
-
-params = {
-    'api_key': 'API',
-}
+images_folder = "Images/"
 
 # grab all the .jpg files
 extention_images = ".jpg"
-get_images = sorted(glob.glob('*' + extention_images))
+get_images = sorted(glob.glob(images_folder + '*' + extention_images))
 
 # loop through all the images in the current folder
 for images in get_images:
@@ -33,9 +26,21 @@ for images in get_images:
     
     payload = json.dumps({"image": im_b64})
 
-    response = requests.post(local_inference_server_address+project_id+str(version_number), params=params, headers=headers, data=im_b64)
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+    }
 
-    data = response.json()
+    params = {
+        'api_key': 'API',
+    }
+
+    response = requests.post(local_inference_server_address+project_id+str(version_number), params=params, headers=headers, data=im_b64)
+    
+    try:
+        data = response.json()
+    except:
+        pass
 
     # print full json response
     print(data)
