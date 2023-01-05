@@ -39,7 +39,8 @@ for images in get_images:
     
     try:
         data = response.json()
-    except:
+    except Exception as e:
+        print(e)
         pass
 
     # print full json response
