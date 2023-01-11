@@ -1,0 +1,58 @@
+version: "3"
+services:
+  Roboflow-GPU-1:
+    image: roboflow/inference-server-trt:latest
+    ports:
+      - "9001:9001"
+    environment:
+    - PORT=9001
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+  Roboflow-GPU-2:
+    image: roboflow/inference-server-trt:latest
+    ports:
+      - "9002:9002"
+    environment:
+    - PORT=9002
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
+  Roboflow-GPU-3:
+    image: roboflow/inference-server-trt:latest
+    ports:
+      - "9003:9003"
+    environment:
+    - PORT=9003
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+  Roboflow-GPU-4:
+    image: roboflow/inference-server-trt:latest
+    ports:
+      - "9004:9004"
+    environment:
+    - PORT=9004
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
