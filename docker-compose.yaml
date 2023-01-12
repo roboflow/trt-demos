@@ -1,52 +1,32 @@
 version: "3"
 services:
   Roboflow-GPU-1:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/inference-server:cpu
     restart: always
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['0']
-            capabilities: [gpu]
+    volumes:
+      - shared-volume:/cache
+
   Roboflow-GPU-2:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/inference-server:cpu
     restart: always
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['1']
-            capabilities: [gpu]
+    volumes:
+      - shared-volume:/cache
   Roboflow-GPU-3:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/inference-server:cpu
     restart: always
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['0']
-            capabilities: [gpu]
+    volumes:
+      - shared-volume:/cache
+
   Roboflow-GPU-4:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/inference-server:cpu
     restart: always
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['1']
-            capabilities: [gpu]
-  Load-Balencer:
-    image: nginx
+    volumes:
+      - shared-volume:/cache
+  Load-Balancer:
+    image: lb
     restart: always
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['1']
-            capabilities: [gpu]
+    ports:
+      - 9001:80
+
+volumes:
+  shared-volume:

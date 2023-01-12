@@ -61,3 +61,18 @@ sudo docker compose up
 ## Terminal 2
 python3 TRT-API-MultiContainer.py
 ```
+
+###
+To run multiple containers behind a LB;
+
+Build the load balancer docker container like so 
+```
+docker build . -t lb
+```
+
+Make sure that the names of the services in the docker-compose file are correctly reflected in the .conf/roboflow-nginx.conf file.
+
+Then
+```
+docker-compose up
+```
