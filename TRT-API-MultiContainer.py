@@ -15,7 +15,7 @@ counter_for_containers = 0
 version_number_array = [10, 3, 3, 13]
 project_id_array = ["small-test-set/", "car-models-nured/", "oxford-pets/", "hard-hat-workers/"]
 images_folder_array = ["images\osprey", "images\cars", "images\pets", "images\safety-vests"]
-api_key_array = ['API', 'API', 'API', 'API']
+api_key_array = ['IUnkIPBUiDN9mBBqlKyl', 'IUnkIPBUiDN9mBBqlKyl', 'IUnkIPBUiDN9mBBqlKyl', 'IUnkIPBUiDN9mBBqlKyl']
 
 while counter_for_containers < number_of_containers:
 

@@ -2,9 +2,10 @@ from roboflow import Roboflow
 import os, glob
 
 local_inference_server_address = "http://localhost:9001/"
-version_number = 10
 
+# Get your Roboflow API Key
 rf = Roboflow(api_key="API")
+version_number = 10
 project = rf.workspace().project("small-test-set")
 local_model = project.version(version_number=version_number, local=local_inference_server_address).model
 
