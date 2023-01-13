@@ -13,11 +13,27 @@ Install from PyPi (Recommended):
 pip install roboflow
 ```
 
-# Configuring Scripts
+## Building the Roboflow Container Load Balencer
+
+To build the load balancer docker container use the command below.
+
+```
+docker build . -t lb
+```
+
+Make sure that the names of the services in the docker-compose.yaml file are correctly reflected in the .conf/roboflow-nginx.conf file.
+
+```
+docker-compose up
+```
+
+Your Docker should now be spinning up multiple GPU containers that all share a volume and a port with the load balancer. This way the load balencer can manage the throughput of each container for optimal speed.
+
+# Configuring Testing Scripts
 
 Before we start docker and run the scripts we need to configure them to your Roboflow account first. For this next step we will need your Roboflow API Key. If you don't have your API key, you can learn how to get it in our [REST API documentation.](https://docs.roboflow.com/rest-api#obtaining-your-api-key)
 
-## Configure TRT-API-MultiContainer.py
+## Configure TRT-API-MultiContainer.py Test Script
 
 ```python
 # Setting up arrays for Roboflow model varaibles (Lines 15-18)
@@ -60,19 +76,4 @@ python3 TRT-Python.py
 sudo docker compose up
 ## Terminal 2
 python3 TRT-API-MultiContainer.py
-```
-
-###
-To run multiple containers behind a LB;
-
-Build the load balancer docker container like so 
-```
-docker build . -t lb
-```
-
-Make sure that the names of the services in the docker-compose file are correctly reflected in the .conf/roboflow-nginx.conf file.
-
-Then
-```
-docker-compose up
 ```
