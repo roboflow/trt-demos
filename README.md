@@ -13,7 +13,7 @@ Install from PyPi (Recommended):
 pip install roboflow
 ```
 
-## Building the Roboflow Container Load Balencer
+## Building the Roboflow Container Load Balancer
 
 To build the load balancer docker container use the command below.
 
