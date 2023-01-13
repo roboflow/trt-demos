@@ -1,27 +1,101 @@
 version: "3"
 services:
   Roboflow-GPU-1:
-    image: roboflow/inference-server:cpu
+    image: roboflow/inference-server-trt:latest
     restart: always
     volumes:
       - shared-volume:/cache
-
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
   Roboflow-GPU-2:
-    image: roboflow/inference-server:cpu
+    image: roboflow/inference-server-trt:latest
     restart: always
     volumes:
       - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
   Roboflow-GPU-3:
-    image: roboflow/inference-server:cpu
+    image: roboflow/inference-server-trt:latest
     restart: always
     volumes:
       - shared-volume:/cache
-
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
   Roboflow-GPU-4:
-    image: roboflow/inference-server:cpu
+    image: roboflow/inference-server-trt:latest
     restart: always
     volumes:
       - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
+  Roboflow-GPU-5:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+  Roboflow-GPU-6:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
+  Roboflow-GPU-7:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+  Roboflow-GPU-8:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
   Load-Balancer:
     image: lb
     restart: always
