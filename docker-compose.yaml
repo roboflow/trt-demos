@@ -3,6 +3,8 @@ services:
   Roboflow-GPU-1:
     image: roboflow/inference-server-trt:latest
     restart: always
+    volumes:
+      - shared-volume:/cache
     deploy:
       resources:
         reservations:
@@ -13,6 +15,8 @@ services:
   Roboflow-GPU-2:
     image: roboflow/inference-server-trt:latest
     restart: always
+    volumes:
+      - shared-volume:/cache
     deploy:
       resources:
         reservations:
@@ -23,6 +27,8 @@ services:
   Roboflow-GPU-3:
     image: roboflow/inference-server-trt:latest
     restart: always
+    volumes:
+      - shared-volume:/cache
     deploy:
       resources:
         reservations:
@@ -33,6 +39,8 @@ services:
   Roboflow-GPU-4:
     image: roboflow/inference-server-trt:latest
     restart: always
+    volumes:
+      - shared-volume:/cache
     deploy:
       resources:
         reservations:
@@ -40,9 +48,23 @@ services:
           - driver: nvidia
             device_ids: ['1']
             capabilities: [gpu]
-  Load-Balencer:
-    image: nginx
+  Roboflow-GPU-5:
+    image: roboflow/inference-server-trt:latest
     restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+  Roboflow-GPU-6:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
     deploy:
       resources:
         reservations:
@@ -50,3 +72,35 @@ services:
           - driver: nvidia
             device_ids: ['1']
             capabilities: [gpu]
+  Roboflow-GPU-7:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+  Roboflow-GPU-8:
+    image: roboflow/inference-server-trt:latest
+    restart: always
+    volumes:
+      - shared-volume:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['1']
+            capabilities: [gpu]
+  Load-Balancer:
+    image: lb
+    restart: always
+    ports:
+      - 9001:80
+
+volumes:
+  shared-volume:
