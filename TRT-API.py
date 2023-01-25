@@ -14,6 +14,8 @@ images_folder = "images/"
 extention_images = ".jpg"
 get_images = sorted(glob.glob(images_folder + '*' + extention_images))
 
+print(get_images)
+
 # loop through all the images in the current folder
 for images in get_images:
 
@@ -25,7 +27,7 @@ for images in get_images:
     im_b64 = base64.b64encode(im_bytes).decode("utf8")
     
     payload = json.dumps({"image": im_b64})
-    print(payload)
+    # print(payload)
 
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -37,7 +39,8 @@ for images in get_images:
     }
 
     response = requests.post(local_inference_server_address+project_id+str(version_number), params=params, headers=headers, data=im_b64)
-    
+    print(response)
+
     try:
         data = response.json()
     except Exception as e:

@@ -10,7 +10,7 @@ services:
         reservations:
           devices:
           - driver: nvidia
-            device_ids: ['0']
+            device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-2:
     image: roboflow/inference-server-trt:latest
@@ -34,7 +34,7 @@ services:
         reservations:
           devices:
           - driver: nvidia
-            device_ids: ['0']
+            device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-4:
     image: roboflow/inference-server-trt:latest
@@ -58,7 +58,7 @@ services:
         reservations:
           devices:
           - driver: nvidia
-            device_ids: ['0']
+            device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-6:
     image: roboflow/inference-server-trt:latest
@@ -82,7 +82,7 @@ services:
         reservations:
           devices:
           - driver: nvidia
-            device_ids: ['0']
+            device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-8:
     image: roboflow/inference-server-trt:latest

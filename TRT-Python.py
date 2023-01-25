@@ -1,14 +1,15 @@
 from roboflow import Roboflow
 import os, glob
-import sys
-import json  
-import requests
-import base64
 
 local_inference_server_address = "http://localhost:9001/"
+
+# Get your Roboflow API Key
+rf = Roboflow(api_key="API")
 version_number = 10
-project_id = "small-test-set/"
-images_folder = "images/"
+project = rf.workspace().project("small-test-set")
+local_model = project.version(version_number=version_number, local=local_inference_server_address).model
+
+images_folder = "Images/"
 
 # grab all the .jpg files
 extention_images = ".jpg"
@@ -17,41 +18,15 @@ get_images = sorted(glob.glob(images_folder + '*' + extention_images))
 # loop through all the images in the current folder
 for images in get_images:
 
-    # print file path
-    print("File path: " + images)
+    print("\n"+images+"\n")
 
-    with open(images, "rb") as f:
-        im_bytes = f.read()        
-    im_b64 = base64.b64encode(im_bytes).decode("utf8")
-    
-    payload = json.dumps({"image": im_b64})
-    print(payload)
+    # infer on a local image
+    inference = local_model.predict(images, confidence=40, overlap=30).json()
 
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json'
-    }
+    # print full inference
+    print(inference)
 
-    params = {
-        'api_key': 'API',
-    }
-
-    response = requests.post(local_inference_server_address+project_id+str(version_number), params=params, headers=headers, data=im_b64)
-    
-    try:
-        data = response.json()
-    except Exception as e:
-        print(e)
-        pass
-
-    # print full json response
-    try:
-        print(data)
-    except Exception as e:
-        print(e)
-        pass
-
-    for predictions in data['predictions']:
+    for predictions in inference['predictions']:
         
         # set class name based on prediction
         Pred_name = predictions['class']
@@ -76,3 +51,4 @@ for images in get_images:
         # set bounding box y based on prediction
         Pred_y = predictions['y']
         # print(Pred_y)
+
