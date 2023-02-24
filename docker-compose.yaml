@@ -3,6 +3,8 @@ services:
   Roboflow-GPU-1:
     image: roboflow/inference-server-trt:latest
     restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     volumes:
       - shared-volume:/cache
     deploy:
@@ -15,6 +17,8 @@ services:
   Roboflow-GPU-2:
     image: roboflow/inference-server-trt:latest
     restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     volumes:
       - shared-volume:/cache
     deploy:
@@ -27,6 +31,8 @@ services:
   Roboflow-GPU-3:
     image: roboflow/inference-server-trt:latest
     restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     volumes:
       - shared-volume:/cache
     deploy:
@@ -39,6 +45,8 @@ services:
   Roboflow-GPU-4:
     image: roboflow/inference-server-trt:latest
     restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     volumes:
       - shared-volume:/cache
     deploy:
@@ -51,6 +59,8 @@ services:
   Roboflow-GPU-5:
     image: roboflow/inference-server-trt:latest
     restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     volumes:
       - shared-volume:/cache
     deploy:
@@ -63,30 +73,8 @@ services:
   Roboflow-GPU-6:
     image: roboflow/inference-server-trt:latest
     restart: always
-    volumes:
-      - shared-volume:/cache
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['1']
-            capabilities: [gpu]
-  Roboflow-GPU-7:
-    image: roboflow/inference-server-trt:latest
-    restart: always
-    volumes:
-      - shared-volume:/cache
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            device_ids: ['1']
-            capabilities: [gpu]
-  Roboflow-GPU-8:
-    image: roboflow/inference-server-trt:latest
-    restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     volumes:
       - shared-volume:/cache
     deploy:
@@ -99,6 +87,8 @@ services:
   Load-Balancer:
     image: lb
     restart: always
+    environment:
+      - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
     ports:
       - 9001:80
 
