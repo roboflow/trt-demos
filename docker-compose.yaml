@@ -1,10 +1,11 @@
 version: "3"
 services:
   Roboflow-GPU-1:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/roboflow-inference-server-trt
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     volumes:
       - shared-volume:/cache
     deploy:
@@ -15,10 +16,11 @@ services:
             device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-2:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/roboflow-inference-server-trt
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     volumes:
       - shared-volume:/cache
     deploy:
@@ -29,10 +31,11 @@ services:
             device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-3:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/roboflow-inference-server-trt
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     volumes:
       - shared-volume:/cache
     deploy:
@@ -43,10 +46,11 @@ services:
             device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-4:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/roboflow-inference-server-trt
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     volumes:
       - shared-volume:/cache
     deploy:
@@ -57,10 +61,11 @@ services:
             device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-5:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/roboflow-inference-server-trt
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     volumes:
       - shared-volume:/cache
     deploy:
@@ -71,10 +76,11 @@ services:
             device_ids: ['1']
             capabilities: [gpu]
   Roboflow-GPU-6:
-    image: roboflow/inference-server-trt:latest
+    image: roboflow/roboflow-inference-server-trt
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     volumes:
       - shared-volume:/cache
     deploy:
@@ -89,6 +95,7 @@ services:
     restart: always
     environment:
       - CUDA_VISIBLE_DEVICES=GPU-805c4b04-7095-57ac-184a-86e0b1cc9b4f
+      - MODEL_CACHE_DIR=/cache
     ports:
       - 9001:80
 
